@@ -26,7 +26,9 @@ public:
 			_array.resize(2 * _array.size());
 
 		_array[_size++] = entry;
-		unsigned idx = _size - 1;
+		if (1 == _size)
+			return;
+		unsigned idx = _size - 2;
 		while (0 != idx && _array[idx / 2] < _array[idx]) {
 			std::swap(_array[idx / 2], _array[idx]);
 			idx /= 2;
@@ -35,7 +37,7 @@ public:
 
 	Type get() {
 		if (0 == _size)
-			return 0; // + throw/return error
+			return Type(); // + throw/return error
 		Type ret = _array[0];
 		_array[0] = _array[--_size];
 
